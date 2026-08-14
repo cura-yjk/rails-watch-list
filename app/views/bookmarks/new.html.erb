@@ -1,0 +1,22 @@
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm rounded-4 p-4">
+        <h2 class="h4 fw-bold mb-4">Add a Movie to <%= @list.name %></h2>
+
+        <%= simple_form_for [@list, @bookmark] do |f| %>
+          <div class="mb-3">
+            <%= f.association :movie, prompt: "Select a movie", input_html: { class: "form-select" } %>
+          </div>
+          <div class="mb-3">
+            <%= f.input :comment, placeholder: "e.g., Recommended by John or Loved the soundtrack", input_html: { class: "form-control" } %>
+          </div>
+          <div class="d-grid gap-2 mt-4">
+            <%= f.submit "Add Bookmark", class: "btn btn-warning rounded-pill" %>
+            <%= link_to "Cancel", list_path(@list), class: "btn btn-link text-muted text-decoration-none" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

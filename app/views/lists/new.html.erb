@@ -1,0 +1,18 @@
+<div class="container py-5" style="max-width: 500px;">
+  <div class="card border-0 shadow-sm p-4">
+    <h2 class="h4 fw-bold mb-4">Create a New List</h2>
+
+    <%= simple_form_for @list do |f| %>
+      <div class="mb-3">
+        <%= f.input :name, label: "List Name", placeholder: "e.g., Drama, Sci-Fi, Classics" %>
+      </div>
+
+      <div class="d-grid gap-2 mt-4">
+        <%= f.button :submit, "Create List", class: "btn btn-warning fw-semibold" %>
+        <%= link_to lists_path, class: "btn btn-outline-secondary mt-2 text-decoration-none" do %>
+          <i class="fa-solid fa-arrow-rotate-left me-1"></i> Back to Lists
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
