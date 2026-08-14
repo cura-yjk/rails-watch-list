@@ -1,11 +1,29 @@
-<div class="container">
-  <!-- Header / Action Bar -->
-  <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
-    <div>
-      <%= link_to "← Back to Lists", lists_path, class: "text-decoration-none text-muted small" %>
-      <h1 class="fw-bold mt-1"><%= @list.name %></h1>
+<div class="container py-4">
+
+  <!-- Hero Banner with List Photo -->
+  <div class="position-relative rounded-4 overflow-hidden mb-4 shadow" style="height: 250px; background-color: #212529;">
+    <% if @list.photo.attached? %>
+      <%= cl_image_tag @list.photo.key, class: "position-absolute top-0 start-0 w-100 h-100 object-fit-cover", alt: @list.name %>
+    <% else %>
+      <%= image_tag 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F021%2F548%2F751%2Flarge_2x%2Fclapper-board-for-cinematography-concept-movie-or-film-format-png.png&f=1&nofb=1&ipt=3be17f7650b971249d29feff463bc4665bb955bb728fd1f0b00d705c88a54ff4', class: "position-absolute top-0 start-0 w-100 h-100 object-fit-cover", alt: @list.name %>
+    <% end %>
+
+    <!-- Dark Gradient Overlay for Readability -->
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.75) 100%);"></div>
+
+    <!-- Header Content over Banner -->
+    <div class="position-relative z-1 p-4 d-flex flex-column justify-content-between h-100 text-white">
+      <div>
+        <%= link_to "← Back to Lists", lists_path, class: "text-decoration-none text-white-50 small" %>
+      </div>
+      <div class="d-flex justify-content-between align-items-end">
+        <div>
+          <h1 class="display-5 fw-bold mb-0"><%= @list.name %></h1>
+          <p class="text-white-50 mb-0 small"><%= pluralize(@list.movies.count, "movie") %> saved</p>
+        </div>
+        <%= link_to "Add Movie", new_list_bookmark_path(@list), class: "btn btn-warning rounded-pill px-4 fw-semibold shadow-sm" %>
+      </div>
     </div>
-    <%= link_to "Add Movie", new_list_bookmark_path(@list), class: "btn btn-warning rounded-pill px-4" %>
   </div>
 
   <!-- Movies Grid -->
@@ -45,6 +63,7 @@
       <%= link_to "Add your first movie", new_list_bookmark_path(@list), class: "btn btn-outline-warning rounded-pill" %>
     </div>
   <% end %>
+
   <hr class="my-5">
 
   <div class="row g-4">

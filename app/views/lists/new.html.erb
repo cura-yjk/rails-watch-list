@@ -6,6 +6,9 @@
       <div class="mb-3">
         <%= f.input :name, label: "List Name", placeholder: "e.g., Drama, Sci-Fi, Classics" %>
       </div>
+      <div class="mb-3">
+        <%= f.input :photo, as: :file %>
+      </div>
 
       <div class="d-grid gap-2 mt-4">
         <%= f.button :submit, "Create List", class: "btn btn-warning fw-semibold" %>
